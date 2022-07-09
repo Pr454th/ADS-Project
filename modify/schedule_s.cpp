@@ -1,6 +1,16 @@
+#include <iostream>
 #include <bits/stdc++.h>
-#include<vector>
+#include <string>
+#include <windows.h>
+
 using namespace std;
+int cc=11;
+//user defined function to change color
+string setcolor(unsigned short color){
+    HANDLE hcon = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hcon, color);
+    return "";
+}
 
 vector<vector<bool>> Adj_matrix;
 
@@ -47,16 +57,28 @@ void displayColors(int color[])
   {
     if(!cls[i].empty())
     {
-      cout<<"\n   =================";
-      cout<<"\n\tSlot-->"<<i+1<<endl;
-      cout<<"   =================\n";
-      cout<<"\n SUBJECT NAME :\t\tSUBJECT CODE:\n ";
+      cout<<endl;
+      cout<<setw(50);
+      cout<<"=================\n";
+      cout<<setw(45);
+      cout<<"Slot-->"<<i+1<<endl;
+      cout<<setw(50);
+      cout<<"=================\n";
+      setcolor(i+12);
+
+      cout<<setw(35);
+      cout<<"SUBJECT NAME :";
+      cout<<setw(35);
+      cout<<"SUBJECT CODE:\n ";
       for(int j=0;j<cls[i].size();j++)
       {
-
-        cout<<allSubject[cls[i][j]].subject_name<<"\t\t\t"<<allSubject[cls[i][j]].subject_code<<"\n ";
+        cout<<setw(30);
+        cout<<allSubject[cls[i][j]].subject_name;
+        cout<<setw(30);
+        cout<<allSubject[cls[i][j]].subject_code<<"\n ";
       }
     }
+    setcolor(7);
   }
 }
 
@@ -125,9 +147,10 @@ bool m_Coloring(vector<vector<bool>> Adj_matrix, int m) {
 
 void displayMatrix() {
    int i, j;
+
    for(i = 0; i < Adj_matrix.size(); i++) {
       for(j = 0; j < Adj_matrix.size(); j++) {
-         cout << Adj_matrix[i][j] << " ";
+        cout << Adj_matrix[i][j] << " ";
       }
       cout << endl;
    }
